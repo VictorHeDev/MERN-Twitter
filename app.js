@@ -4,9 +4,14 @@ const mongoose = require('mongoose');
 const db = require('./config/keys').mongoURI;
 const User = require('./models/User');
 const bodyParser = require('body-parser');
+const passport = require('passport');
 
 const users = require('./routes/api/users');
 const tweets = require('./routes/api/tweets');
+
+app.use(passport.initialize());
+require('./config/passport')(passport);
+
 
 mongoose
   .connect(db, { useNewUrlParser: true })
