@@ -1,7 +1,7 @@
 const express = require('express');
 const router = express.Router();
-const bcrypt = require('bcryptjs');
 const User = require('../../models/User');
+const bcrypt = require('bcryptjs');
 
 router.get('/test', (req, res) => res.json({ msg: 'This is the users route' }));
 
@@ -12,9 +12,9 @@ router.post('/register', (req, res) => {
       // * Throw a 400 error if the email address already exists
       return res
         .status(400)
-        .json({ email: 'A user has already registered with this address' });
+        .json({ email: 'A user has already registered with this email' });
     } else {
-      // Otherwise create a new user
+      // * Otherwise create a new user
       const newUser = new User({
         handle: req.body.handle,
         email: req.body.email,
