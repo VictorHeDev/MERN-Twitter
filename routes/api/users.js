@@ -25,6 +25,7 @@ router.post('/register', (req, res) => {
         bcrypt.hash(newUser.password, salt, (err, hash) => {
           if (err) throw err;
           newUser.password = hash;
+          // * newUser will be sent back as a JSON object
           newUser
             .save()
             .then((user) => res.json(user))
@@ -34,5 +35,27 @@ router.post('/register', (req, res) => {
     }
   });
 });
+
+router.post('/login', (req, res) => {
+  const email = req.body.email;
+  const password = req.body.password;
+
+  User.findOne({email})
+    .then(user => {
+      if (!user) {
+        return res.status(404).json({email: 'This user does not exist'});
+      }
+
+      bcrypt.compare(password, user.password)
+        .then(isMatch => {
+          if (isMatch) {
+            res.json({msg: 'Success'});
+          } else {
+            return res.status(400).json({password: 'Incorrect password'});
+          }
+        })
+    })
+})
+
 
 module.exports = router;
