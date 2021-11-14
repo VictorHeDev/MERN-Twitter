@@ -1,5 +1,3 @@
-// src/components/nav/navbar_container.js
-
 import { connect } from 'react-redux';
 import { logout } from '../../actions/session_actions';
 

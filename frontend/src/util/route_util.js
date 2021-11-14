@@ -1,5 +1,3 @@
-// src/util/route_util.js
-
 import React from 'react';
 import { connect } from 'react-redux';
 import { Route, Redirect, withRouter } from 'react-router-dom';
@@ -35,7 +33,6 @@ const Protected = ({ component: Component, loggedIn, ...rest }) => (
 );
 
 // Use the isAuthenitcated slice of state to determine whether a user is logged in
-
 const mapStateToProps = (state) => ({
   loggedIn: state.session.isAuthenticated,
 });

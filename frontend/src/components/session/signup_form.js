@@ -1,5 +1,3 @@
-// src/components/session/signup_form.js
-
 import React from 'react';
 import { withRouter } from 'react-router-dom';
 
